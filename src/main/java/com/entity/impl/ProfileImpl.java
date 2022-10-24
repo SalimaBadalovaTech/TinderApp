@@ -4,10 +4,7 @@ import com.entity.Profile;
 import com.entity.inter.AbstractDao;
 import com.entity.inter.ProfileInter;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +23,9 @@ public class ProfileImpl extends AbstractDao implements ProfileInter {
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
                 String profile_link = rs.getString("profile_link");
-                profiles.add(new Profile(id,name,surname,profile_link));
+                String workspace = rs.getString("workspace");
+                Date last_login_date = rs.getDate("last_login_date");
+                profiles.add(new Profile(id,name,surname,profile_link,workspace,last_login_date));
             }
         } catch (Exception ex) {
             ex.printStackTrace();

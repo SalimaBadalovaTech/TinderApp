@@ -41,12 +41,17 @@ public class LikePageController extends HttpServlet {
         if (likeButton != null) {
             likedProfile(profiles.get(getPictureID()));
             setPictureID(getPictureID() + 1);
-        } else if (dislikeButton!=null){
+        } else if (dislikeButton != null) {
             System.out.println("in dislike");
             System.out.println(getPictureID());
-            setPictureID(getPictureID()+1);
+            setPictureID(getPictureID() + 1);
         }
-        response.sendRedirect("like-page.jsp");
+
+        if (getPictureID() == 0) {
+            response.sendRedirect("people-list.jsp");
+        } else {
+            response.sendRedirect("like-page.jsp");
+        }
 
     }
 
@@ -57,6 +62,5 @@ public class LikePageController extends HttpServlet {
 
     public void likedProfile(Profile profile) {
         likedProfileIml.addProfile(profile);
-        profileImpl.removeProfile(profile);
     }
 }

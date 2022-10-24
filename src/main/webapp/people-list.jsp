@@ -4,6 +4,13 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.tinder.LikePageController" %>
 <%@ page import="com.entity.impl.LikedProfilesImpl" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.time.Duration" %>
+<%@ page import="java.time.temporal.Temporal" %>
+<%@ page import="java.time.temporal.ChronoUnit" %>
+<%@ page import="org.joda.time.Days" %>
+<%@ page import="org.joda.time.ReadableInstant" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -22,7 +29,7 @@
 </head>
 <body>
 <% ProfileImpl profileImpl = new ProfileImpl();
-    LikedProfilesImpl likedProfiles=new LikedProfilesImpl();
+    LikedProfilesImpl likedProfileImpl=new LikedProfilesImpl();
     List<Profile> profileList = profileImpl.getAll();
     LikePageController likePageController=new LikePageController();
     Profile firstProfile = profileList.get(likePageController.getPictureID());%>
@@ -37,21 +44,23 @@
                     <div class="table-container">
                         <table class="table-users table" border="0">
                             <tbody>
+                            <% List<Profile> profiles = likedProfileImpl.getAll();
+                            for(Profile profile:profiles){%>
                             <tr>
                                 <td width="10">
                                     <div class="avatar-img">
-                                        <img class="img-circle" src="<%=firstProfile.getProfile_link()%>" />  
+                                        <img class="img-circle" src="<%=profile.getProfile_link()%>" />
                                     </div>
 
                                 </td>
                                 <td class="align-middle">
-                                    out.println(firstProfile.getName()+" "+firstProfile.getSurname());
+                                    <%out.println(profile.getName()+" "+profile.getSurname());%>
                                 </td>
                                 <td class="align-middle">
-                                    Builder Sales Agent
+                                    <%out.println(profile.getWorkspace());%>
                                 </td>
                                 <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
+                                    Last Login:  <%out.println(profile.getLast_login_date());%> <br><small class="text-muted"><%out.println(profile.dateDiff().getDays()+" days ago");}%> </small>
                                 </td>
                             </tr>
                             </tbody>
