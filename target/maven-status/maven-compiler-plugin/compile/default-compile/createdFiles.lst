@@ -1,3 +1,9 @@
+com\entity\impl\ProfileImpl.class
 com\tinder\IndexController.class
-com\entity\Profiles.class
+com\entity\inter\LikedProfilesInter.class
+com\entity\inter\ProfileInter.class
+com\entity\Profile.class
+com\Main.class
+com\entity\impl\LikedProfilesImpl.class
 com\tinder\LikePageController.class
+com\entity\inter\AbstractDao.class
