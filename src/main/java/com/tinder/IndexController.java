@@ -16,7 +16,7 @@ import static java.lang.System.out;
 public class IndexController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    //adding new commentsgit
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
