@@ -47,7 +47,7 @@ public class UserImpl extends AbstractDao implements UserInter {
         List<User> users = new UserImpl().getAllUsers();
         for (User user:users){
             if (email.equals(user.getEmail())){
-                return user.getId();
+                return User.getId();
             }
         }
         return null;

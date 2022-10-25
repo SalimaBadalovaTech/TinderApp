@@ -4,7 +4,6 @@ import com.entity.Profile;
 import com.entity.impl.LikedProfilesImpl;
 import com.entity.impl.ProfileImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,12 +31,10 @@ public class LikePageController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Profile> profiles = profileImpl.getAll();
         String likeButton = request.getParameter("likeButton");
         String dislikeButton = request.getParameter("dislikeButton");
-        String url = request.getParameter("picture");
         if (likeButton != null) {
             likedProfile(profiles.get(getPictureID()));
             setPictureID(getPictureID() + 1);
@@ -56,11 +53,14 @@ public class LikePageController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
     public void likedProfile(Profile profile) {
-        likedProfileIml.addProfile(profile);
+        if (!likedProfileIml.getAll().contains(profile)) {
+            System.out.println("liked called " + likedProfileIml.getAll().contains(profile));
+            likedProfileIml.addProfile(profile);
+        }
     }
 }

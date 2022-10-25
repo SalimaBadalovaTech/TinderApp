@@ -15,7 +15,7 @@ import java.util.List;
 
 public class LikedProfilesImpl extends AbstractDao implements LikedProfilesInter {
 
-    private User currentUser;
+    private User currentUser = new User(-1,"test","test");
 
     public User getCurrentUser() {
         return currentUser;
@@ -35,13 +35,16 @@ public class LikedProfilesImpl extends AbstractDao implements LikedProfilesInter
             stmt.execute("SELECT * FROM tinderapp.liked_profiles");
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
-                int id = rs.getInt("userID");
-                String name = rs.getString("name");
-                String surname = rs.getString("surname");
-                String profile_link = rs.getString("profile_link");
-                String workspace = rs.getString("workspace");
-                Date last_login_date = rs.getDate("last_login_date");
-                profiles.add(new Profile(id,name,surname,profile_link,workspace,last_login_date));
+                int userID = rs.getInt("userID");
+                if (userID== User.getId()) {
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String profile_link = rs.getString("profile_link");
+                    String workspace = rs.getString("workspace");
+                    Date last_login_date = rs.getDate("last_login_date");
+                    profiles.add(new Profile(id, name, surname, profile_link, workspace, last_login_date));
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -58,6 +61,7 @@ public class LikedProfilesImpl extends AbstractDao implements LikedProfilesInter
     @Override
     public boolean addProfile(Profile profile) {
         try {
+            System.out.println("in try");
             Connection c = connect();
             PreparedStatement statement = c.prepareStatement("insert into " +
                     "tinderapp.liked_profiles(name, surname, profile_link,workspace,last_login_date,userID) values (?,?,?,?,?,?)");
@@ -66,7 +70,7 @@ public class LikedProfilesImpl extends AbstractDao implements LikedProfilesInter
             statement.setString(3, profile.getProfile_link());
             statement.setString(4, profile.getWorkspace());
             statement.setDate(5, profile.getLast_login_date());
-            statement.setInt(6,profile.getId());
+            statement.setInt(6, User.getId());
             return statement.execute();
         } catch (Exception e) {
             e.printStackTrace();

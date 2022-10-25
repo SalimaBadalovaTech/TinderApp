@@ -4,13 +4,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.tinder.LikePageController" %>
 <%@ page import="com.entity.impl.LikedProfilesImpl" %>
-<%@ page import="java.time.LocalDate" %>
-<%@ page import="java.sql.Date" %>
-<%@ page import="java.time.Duration" %>
-<%@ page import="java.time.temporal.Temporal" %>
-<%@ page import="java.time.temporal.ChronoUnit" %>
-<%@ page import="org.joda.time.Days" %>
-<%@ page import="org.joda.time.ReadableInstant" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">

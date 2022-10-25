@@ -1,5 +1,6 @@
 package com.tinder;
 
+import com.entity.CurrentUser;
 import com.entity.User;
 import com.entity.impl.LikedProfilesImpl;
 import com.entity.impl.UserImpl;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static java.lang.System.out;
-
 
 @WebServlet(name = "IndexController", urlPatterns = {"/index"})
 public class IndexController extends HttpServlet {
@@ -30,15 +30,14 @@ public class IndexController extends HttpServlet {
 //                } else {
 //                    out.println("entered username or password is wrong");
 //                }
-                out.println(email);
-                out.println(userImpl.getPasswordByEmail(email));
-                    if (userImpl.getPasswordByEmail(email).equals(password)) {
-                        likePageController.setCurrentUser(new User(userImpl.getIDByEmail(email),email,userImpl.getPasswordByEmail(email)));
-                        response.sendRedirect("like-page.jsp");
-                    } else {
-                        out.println("entered username or password is wrong");
-                    }
+                if (userImpl.getPasswordByEmail(email).equals(password)) {
+                    likePageController.setCurrentUser(new User(userImpl.getIDByEmail(email), email, userImpl.getPasswordByEmail(email)));
+                    CurrentUser.setId(userImpl.getIDByEmail(email));
+                    response.sendRedirect("like-page.jsp");
+                } else {
+                    out.println("entered username or password is wrong");
                 }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

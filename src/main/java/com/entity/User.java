@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private static int id;
 
     @Column(name = "email")
     private String email;
@@ -24,12 +24,12 @@ public class User {
 
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        User.id = id;
     }
 
     public String getEmail() {
