@@ -16,7 +16,7 @@ public class UserImpl extends AbstractDao implements UserInter {
         List<User> users = new ArrayList<>();
         Connection conn;
         try {
-            conn = connect();
+            conn = get();
             Statement stmt = conn.createStatement();
             stmt.execute("SELECT * FROM tinderapp.users");
             ResultSet rs = stmt.getResultSet();

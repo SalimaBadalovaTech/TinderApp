@@ -30,7 +30,7 @@ public class LikedProfilesImpl extends AbstractDao implements LikedProfilesInter
         List<Profile> profiles = new ArrayList<>();
         Connection conn;
         try {
-            conn = connect();
+            conn = get();
             Statement stmt = conn.createStatement();
             stmt.execute("SELECT * FROM tinderapp.liked_profiles");
             ResultSet rs = stmt.getResultSet();
@@ -62,7 +62,7 @@ public class LikedProfilesImpl extends AbstractDao implements LikedProfilesInter
     public boolean addProfile(Profile profile) {
         try {
             System.out.println("in try");
-            Connection c = connect();
+            Connection c = get();
             PreparedStatement statement = c.prepareStatement("insert into " +
                     "tinderapp.liked_profiles(name, surname, profile_link,workspace,last_login_date,userID) values (?,?,?,?,?,?)");
             statement.setString(1, profile.getName());
