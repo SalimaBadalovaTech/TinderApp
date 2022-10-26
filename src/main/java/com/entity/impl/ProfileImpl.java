@@ -14,7 +14,7 @@ public class ProfileImpl extends AbstractDao implements ProfileInter {
         List<Profile> profiles = new ArrayList<>();
         Connection conn;
         try {
-            conn = connect();
+            conn = get();
             Statement stmt = conn.createStatement();
                 stmt.execute("SELECT * FROM tinderapp.profiles");
             ResultSet rs = stmt.getResultSet();
@@ -42,7 +42,7 @@ public class ProfileImpl extends AbstractDao implements ProfileInter {
     @Override
     public boolean removeProfile(Profile profile) {
         try {
-            Connection c = connect();
+            Connection c = get();
             PreparedStatement statement = c.prepareStatement("delete from " +
                     "tinderapp.profiles where profile_link=?");
             statement.setString(1,profile.getProfile_link());
