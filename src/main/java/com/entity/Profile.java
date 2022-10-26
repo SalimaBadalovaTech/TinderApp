@@ -109,4 +109,5 @@ public class Profile {
         LocalDate lastServiceLocalDate = LocalDate.fromDateFields(last_login_date);
         return Days.daysBetween(lastServiceLocalDate,org.joda.time.LocalDate.now());
     }
+
 }

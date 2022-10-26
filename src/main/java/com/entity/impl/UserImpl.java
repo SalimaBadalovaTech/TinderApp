@@ -52,4 +52,5 @@ public class UserImpl extends AbstractDao implements UserInter {
         }
         return null;
     }
+
 }
