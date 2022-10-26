@@ -52,4 +52,5 @@ public class ProfileImpl extends AbstractDao implements ProfileInter {
             return false;
         }
     }
+
 }

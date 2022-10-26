@@ -8,4 +8,5 @@ public interface UserInter {
 
     List<User> getAllUsers();
     String getPasswordByEmail(String email);
+
 }

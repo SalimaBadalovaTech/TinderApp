@@ -10,4 +10,5 @@ public class CurrentUser {
     public static void setId(int id) {
         CurrentUser.id = id;
     }
+
 }

@@ -8,4 +8,5 @@ public interface LikedProfilesInter {
     List<Profile> getAll();
     Profile getProfileById(Long id);
     boolean addProfile(Profile profile);
+
 }

@@ -77,4 +77,5 @@ public class LikedProfilesImpl extends AbstractDao implements LikedProfilesInter
             return false;
         }
     }
+
 }
